@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Gloomath.Views.MaterialSelectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gloomath.Views" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:controls="clr-namespace:Gloomath.Controls"
+             mc:Ignorable="d" Height="auto" Width="auto">
+    <Grid>
+        <controls:MaterialCard Title="{Binding CurrentMaterial.Title}"
+                               Description="{Binding CurrentMaterial.Description}"
+                               Icon="{Binding CurrentMaterial.Icon}" />
+
+
+        <!-- Previous Material Card-->
+        <Button x:Name="Previous"
+                Content="{materialDesign:PackIcon Kind=ArrowLeftBoldHexagonOutline, Size=24}"
+                Background="{StaticResource Brush/Gloomath/sys/light/primary}"
+                Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="8 0 0 0"
+                Height="40"
+                Width="40"
+                Style="{StaticResource MaterialDesignFloatingActionLightButton}" Cursor="Hand" />
+
+
+        <!-- Next Material Card-->
+        <Button x:Name="Next"
+                Content="{materialDesign:PackIcon Kind=ArrowRightBoldHexagonOutline, Size=24}"
+                Background="{StaticResource Brush/Gloomath/sys/light/primary}"
+                Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Margin="0 0 8 0"
+                Height="40"
+                Width="40"
+                Style="{StaticResource MaterialDesignFloatingActionLightButton}" Cursor="Hand" />
+    </Grid>
+</UserControl>

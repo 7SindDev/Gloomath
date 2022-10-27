@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Gloomath.Controls.MaterialContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gloomath.Controls" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             x:Name="root"
+             mc:Ignorable="d">
+    <Border Margin="{Binding Path=Margin, ElementName=root}" 
+            Height="100" 
+            Padding="6 0 6 0"
+            BorderThickness="4" 
+            Background="{StaticResource Brush/Gloomath/ref/primary/primary50}">
+        <Grid Height="80" Background="{StaticResource Brush/Gloomath/ref/primary/primary30}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Content Symbol -->
+            <Grid Grid.Column="0" Height="70" Width="70" HorizontalAlignment="Left" Margin="8 0 0 0">
+                <Path Fill="#00639A" Data="M35 0L65.3109 17.5V52.5L35 70L4.68911 52.5V17.5L35 0Z"/>
+                <Path Fill="#004A75" Data="M35 2L63.5788 18.5V51.5L35 68L6.42116 51.5V18.5L35 2Z"/>
+                <Path Fill="#003352" Data="M35 4L61.8468 19.5V50.5L35 66L8.15321 50.5V19.5L35 4Z"/>
+                <materialDesign:PackIcon Kind="{Binding Path=Icon, ElementName=root}"
+                                         Width="42"
+                                         Height="42" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" 
+                                         Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" />
+            </Grid>
+
+            <!-- Description -->
+            <TextBlock Grid.Column="1"
+                       Text="{Binding Path=Description, ElementName=root}"
+                       TextWrapping="Wrap"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       FontSize="16" 
+                       Margin="8"
+                       Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" />
+
+            <!-- Access Button -->
+            <local:IconizedButton Grid.Column="2"
+                                  Label="Acessar" 
+                                  Icon="PlayCircleOutline"
+                                  Width="120" 
+                                  Height="50"
+                                  Color="{StaticResource Brush/Gloomath/key-colors/secondary}"
+                                  Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                                  MethodName="Access"
+                                  Margin="0 0 8 0" 
+                                  HorizontalAlignment="Right"
+                                  CornerRadius="12" />
+        </Grid>
+    </Border>
+</UserControl>

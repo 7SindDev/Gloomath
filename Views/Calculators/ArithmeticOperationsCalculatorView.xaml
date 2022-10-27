@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Gloomath.Views.Calculators.ArithmeticOperationsCalculatorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gloomath.Views.Calculators" 
+             xmlns:controls="clr-namespace:Gloomath.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="300" />
+            <ColumnDefinition Width="*" MinWidth="300" />
+        </Grid.ColumnDefinitions>
+
+        <controls:Calculator Rows="5" Columns="4"  Expression="{Binding Expression, Mode=OneWay}" Output="{Binding Output, Mode=OneWay}">
+            <controls:CalculatorButton Margin="2" Label="C" Action="[Event Click] = [Action CClear]" />
+            <controls:CalculatorButton Margin="2" Label="CE" Action="[Event Click] = [Action CEClear]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Division}" Action="[Event Click] = [Action Operator('/')]" IsEnabled="{Binding IsOperatorsEnabled}" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=BackspaceOutline}" Action="[Event Click] = [Action Backspace]" />
+
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number7}" Action="[Event Click] = [Action Digit(7)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number8}" Action="[Event Click] = [Action Digit(8)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number9}" Action="[Event Click] = [Action Digit(9)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Multiply}" Action="[Event Click] = [Action Operator('*')]" IsEnabled="{Binding IsOperatorsEnabled}" />
+
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number4}" Action="[Event Click] = [Action Digit(4)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number5}" Action="[Event Click] = [Action Digit(5)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number6}" Action="[Event Click] = [Action Digit(6)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Minus}" Action="[Event Click] = [Action Operator('-')]" IsEnabled="{Binding IsOperatorsEnabled}" />
+
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number1}" Action="[Event Click] = [Action Digit(1)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number2}" Action="[Event Click] = [Action Digit(2)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number3}" Action="[Event Click] = [Action Digit(3)]" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Plus}" Action="[Event Click] = [Action Operator('+')]" IsEnabled="{Binding IsOperatorsEnabled}" />
+
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=PlusMinus}" Action="[Event Click] = [Action PlusMinus]"  IsEnabled="{Binding IsOperatorsEnabled}" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Number0}" Action="[Event Click] = [Action Digit(0)]" />
+            <controls:CalculatorButton Margin="2" Label="." Action="[Event Click] = [Action Comma]" IsEnabled="{Binding IsOperatorsEnabled}" />
+            <controls:CalculatorButton Margin="2" Label="{materialDesign:PackIcon Kind=Equal}" Action="[Event Click] = [Action Equal]" BackColor="Black" ForeColor="White" />
+        </controls:Calculator>
+
+        <!-- Operations Histories -->
+        <Grid Grid.Column="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            
+            <ScrollViewer Grid.Row="0">
+                <Grid>
+                    <!-- Empty History Alert -->
+                    <TextBlock Text="Ainda não há histórico"
+                               Visibility="{Binding IsEmptyHistory, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               FontSize="19" />
+                    
+                    <!-- Histories -->
+                    <ItemsControl x:Name="CalculatorHistories">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Height="auto"
+                                        cal:Message.Attach="ShowHistory($dataContext)">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid Background="Transparent">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="19" />
+                                                    <RowDefinition Height="27" />
+                                                    <RowDefinition Height="auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <Viewbox HorizontalAlignment="Right">
+                                                    <TextBlock Grid.Row="0" FontSize="10" Text="{Binding Expression}" />
+                                                </Viewbox>
+                                                <Viewbox Grid.Row="1" HorizontalAlignment="Right">
+                                                    <TextBlock HorizontalAlignment="Right" Text="{Binding Output}" />
+                                                </Viewbox>
+
+                                                <Separator Grid.Row="2" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </ScrollViewer>
+
+            <!-- Clear Histories Button -->
+            <Button x:Name="ClearHistory" Grid.Row="1" Content="{materialDesign:PackIcon Kind=TrashOutline}" VerticalAlignment="Bottom" />
+        </Grid>
+        
+        <GridSplitter Grid.Column="0" BorderBrush="Black" BorderThickness="3" />
+    </Grid>
+</UserControl>

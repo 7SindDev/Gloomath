@@ -1,0 +1,88 @@
+﻿ <UserControl x:Class="Gloomath.Views.Practices.PracticeConfigView"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:cal="http://www.caliburnproject.org"
+              mc:Ignorable="d"
+              d:DesignHeight="450"
+              d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Title}"
+                   Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                   FontSize="32"
+                   Margin="0 16"
+                   HorizontalAlignment="Center" />
+
+        <Border Grid.Row="1"
+                Margin="16"
+                Background="{StaticResource Brush/Gloomath/ref/primary/primary30}"
+                CornerRadius="8"
+                HorizontalAlignment="Stretch"
+                Width="auto"
+                Height="130"
+                Padding="16">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center">
+                <DockPanel LastChildFill="False"
+                           Margin="0 0 0 16">
+                    <TextBlock Text="Dificuldade"
+                               DockPanel.Dock="Left"
+                               FontSize="16"
+                               Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" />
+                    <StackPanel Orientation="Horizontal"
+                                DockPanel.Dock="Right"
+                                Margin="0 0 65 0">
+                        <RadioButton Background="Green"
+                                     Margin="0 0 8 0"
+                                     cal:Message.Attach="[Event Click] = [Action Difficulty('EASY')]"
+                                     IsChecked="True" />
+                        <RadioButton Background="Yellow"
+                                     Margin="0 0 8 0"
+                                     cal:Message.Attach="[Event Click] = [Action Difficulty('MEDIUM')]" />
+                        <RadioButton Background="Red"
+                                     Margin="0 0 8 0"
+                                     cal:Message.Attach="[Event Click] = [Action Difficulty('HARD')]" />
+                    </StackPanel>
+                </DockPanel>
+
+                <DockPanel LastChildFill="False"
+                           Margin="0 0 0 16">
+                    <TextBlock Text="Quantidade de questões"
+                               DockPanel.Dock="Left"
+                               FontSize="16"
+                               Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" />
+                    <Slider DockPanel.Dock="Right"
+                            Background="{StaticResource Brush/Gloomath/ref/primary/primary20}"
+                            Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                            Margin="0 0 32 0"
+                            Value="{Binding PracticeConfig.QuestionsQuantity}"
+                            Maximum="5"
+                            Minimum="1"
+                            Width="150"
+                            TickPlacement="Both"
+                            Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}" />
+                </DockPanel>
+            </StackPanel>
+        </Border>
+
+        <Button x:Name="Start"
+                Grid.Row="2"
+                Style="{StaticResource MaterialDesignIconButton}"
+                Content="{materialDesign:PackIcon Kind=PlayCircleOutline, Size=40}"
+                Background="{StaticResource Brush/Gloomath/ref/primary/primary40}"
+                Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                VerticalAlignment="Bottom"
+                Margin="0 0 0 16"
+                Width="60"
+                Height="60" />
+    </Grid>
+</UserControl>

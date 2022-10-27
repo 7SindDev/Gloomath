@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="Gloomath.Views.Practices.StartedPracticeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gloomath.Views.Practices"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border>
+        <Border.Background>
+            <LinearGradientBrush MappingMode="Absolute"
+                                 StartPoint="4,600"
+                                 EndPoint="739.758,9.66889">
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary70}" />
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary60}" Offset="0.104942" />
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary50}" Offset="0.297068" />
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary40}" Offset="0.493188" />
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary30}" Offset="0.859491" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding PracticeProgress.CurrentQuestion}"
+                           Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                <TextBlock Text="/"
+                           Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                <TextBlock Text="{Binding PracticeProgress.MaxQuestionsQuantity}"
+                           Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+
+            <Grid Grid.Row="1">
+                <Border Background="{StaticResource Brush/Gloomath/ref/primary/primary20}"
+                        CornerRadius="8"
+                        Margin="16"
+                        Padding="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Text="{Binding CurrentQuestion.Title}"
+                                   Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                                   FontSize="32"
+                                   Margin="0 0 0 48"
+                                   HorizontalAlignment="Center" />
+
+                        <TextBlock Grid.Row="1"
+                                   Text="{Binding CurrentQuestion.Description}"
+                                   TextWrapping="Wrap"
+                                   Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                                   FontSize="16"
+                                   HorizontalAlignment="Left" />
+
+                        <Button x:Name="Proceed"
+                                Grid.Row="2"
+                                Content="Prosseguir"
+                                Width="150"
+                                Background="{StaticResource Brush/Gloomath/ref/primary/primary20}" 
+                                Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" 
+                                HorizontalAlignment="Right" />
+
+                        <ItemsControl Grid.Row="3"
+                                      ItemsSource="{Binding CurrentQuestion.Options}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="{Binding CurrentQuestion.Options.Count}" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding Symbol}"
+                                                   Padding="16"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Stretch"
+                                                   FontSize="16"
+                                                   FontWeight="Bold"
+                                                   Background="{StaticResource Brush/Gloomath/ref/primary/primary40}"
+                                                   Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" />
+                                        <RadioButton Grid.Column="1"
+                                                     Style="{StaticResource MaterialDesignTabRadioButtonLeft}"
+                                                     HorizontalContentAlignment="Left"
+                                                     VerticalAlignment="Stretch"
+                                                     FontSize="14"
+                                                     Background="{StaticResource Brush/Gloomath/ref/primary/primary10}"
+                                                     BorderBrush="{StaticResource Brush/Gloomath/ref/primary/primary10}"
+                                                     Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}"
+                                                     GroupName="QuestionOption"
+                                                     cal:Message.Attach="Select($dataContext)">
+                                            <RadioButton.Content>
+                                                <TextBlock Text="{Binding Explanation}" TextWrapping="Wrap" />
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        
+                    </Grid>
+                </Border>
+            </Grid>
+
+
+        </Grid>
+    </Border>
+</UserControl>

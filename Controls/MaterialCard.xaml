@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Gloomath.Controls.MaterialCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Gloomath.Controls"
+             xmlns:local="clr-namespace:Gloomath.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             x:Name="root"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <!-- Base -->
+    <Border CornerRadius="12">
+        <Border.Background>
+            <LinearGradientBrush MappingMode="Absolute" StartPoint="4,600" EndPoint="739.758,9.66889">
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary70}" />
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary60}" Offset="0.104942"/>
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary50}" Offset="0.297068"/>
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary40}" Offset="0.493188"/>
+                <GradientStop Color="{StaticResource Color/Gloomath/ref/primary/primary30}" Offset="0.859491"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <!-- Content -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="192" />
+                <RowDefinition Height="48" />
+                <RowDefinition Height="28" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Material Symbol -->
+            <Grid Grid.Row="0" Height="152" Width="152" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72 24 0 0">
+                <Path Fill="{StaticResource Brush/Gloomath/ref/primary/primary40}" Data="M76 0L141.818 38V114L76 152L10.1821 114V38L76 0Z"/>
+                <Path Fill="{StaticResource Brush/Gloomath/ref/primary/primary30}" Data="M76 4.34283L138.057 40.1714V111.829L76 147.657L13.9431 111.829V40.1714L76 4.34283Z"/>
+                <Path Fill="{StaticResource Brush/Gloomath/ref/primary/primary20}" Data="M76 8.68573L134.296 42.3429V109.657L76 143.314L17.7041 109.657V42.3429L76 8.68573Z"/>
+                <materialDesign:PackIcon Kind="{Binding Path=Icon, ElementName=root}"
+                                                 Width="82"
+                                                 Height="82" 
+                                                 HorizontalAlignment="Center" 
+                                                 VerticalAlignment="Center" 
+                                                 Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" />
+            </Grid>
+
+            <!-- Title -->
+            <TextBlock Grid.Row="1" Text="{Binding Path=Title, ElementName=root}" FontSize="32" FontWeight="Bold" Margin="72 0 0 0" Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" />
+
+            <!-- Separator -->
+            <Border Grid.Row="2" Height="4" Margin="72 0 72 0" Background="{StaticResource Brush/Gloomath/ref/primary/primary10}" CornerRadius="3" />
+
+            <!-- Description -->
+            <TextBlock Grid.Row="3" Text="{Binding Path=Description, ElementName=root}" FontSize="24" Margin="72 0 72 0" Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" TextWrapping="Wrap" />
+
+            <!-- Access Button -->
+            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0 0 0 24" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <controls:IconizedButton Label="Acessar"
+                                         Icon="PlayCircleOutline"
+                                         Width="211" 
+                                         Height="72" 
+                                         Color="{StaticResource Brush/Gloomath/key-colors/secondary}" 
+                                         Foreground="{StaticResource Brush/Gloomath/key-colors/neutral}" 
+                                         CornerRadius="12"
+                                         MethodName="Access" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
